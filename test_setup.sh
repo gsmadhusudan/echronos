@@ -82,6 +82,11 @@ then
     python${PY_VER} -m pip install --user pylint
 fi
 
+# echronos-qemu: required for testing ARM systems.
+git clone --depth=1 https://github.com/echronos/qemu ${HOME}/echronos-qemu
+# libfdt-dev libsdl2-image-2.0-0 libsdl2-2.0-0: required by echronos-qemu
+sudo apt-get -qq install -y libfdt-dev libsdl2-image-2.0-0 libsdl2-2.0-0
+
 # install GDB with PowerPC support from source; required by x.py test systems
 # unpack gdb tar ball to home directory to prevent tests below from discovering and failing on unrelated files
 if ! test -e "${HOME}/local/bin/powerpc-linux-gdb"
